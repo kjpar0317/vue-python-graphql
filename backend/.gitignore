@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+__pypackages__/
+
+dist
+
+# 정보 들어가는거 ignore
+.env*
+
+poetry.lock

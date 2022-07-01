@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["kjpar0317 <kjpar_kr@yahoo.co.kr>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+strawberry-graphql = {extras = ["debug-server"], version = "^0.114.1"}
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
+fastapi = "^0.78.0"
+SQLAlchemy = "^1.4.37"
+pydantic = {extras = ["email"], version = "^1.9.1"}
+mysqlclient = "^2.1.0"
+asyncio = "^3.4.3"
+aiomysql = "^0.1.1"
+PyJWT = {extras = ["crypto"], version = "^2.4.0"}
+sqlmodel = "^0.0.6"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
