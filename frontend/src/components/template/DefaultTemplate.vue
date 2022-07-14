@@ -50,12 +50,16 @@ const store = layoutStore();
   --tw-text-opacity: 1;
   color: hsl(var(--bc)/var(--tw-text-opacity));
   border-width: 1px;
-  border-color: hsl(var(--b2, var(--b1)/var(--tw-bg-opacity)));
+  border-color: hsl(var(--b3, var(--b1)/var(--tw-bg-opacity)));
   border-bottom-style: solid;
 }
 .ag-theme-alpine .ag-row-odd {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+}
+.ag-theme-alpine .ag-row-hover {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--p)/var(--tw-bg-opacity));
 }
 .ag-header-group-cell-label, .ag-header-cell-label {
   display: flex;
