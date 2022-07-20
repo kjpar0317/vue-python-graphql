@@ -60,6 +60,8 @@ const store = layoutStore();
 .ag-theme-alpine .ag-row-hover {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--p)/var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--pc)/var(--tw-text-opacity));
 }
 .ag-header-group-cell-label, .ag-header-cell-label {
   display: flex;
