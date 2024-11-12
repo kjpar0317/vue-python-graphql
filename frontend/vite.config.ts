@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import WindiCSS from 'vite-plugin-windicss'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import WindiCSS from "vite-plugin-windicss";
 
-const path = require('path');
+const path = require("path");
 const port = process.env.PORT || 8000;
 
 // https://vitejs.dev/config/

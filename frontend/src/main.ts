@@ -1,12 +1,11 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { createPinia } from "pinia";
-import vfmPlugin from 'vue-final-modal';
+import { createVfm } from "vue-final-modal";
 import Toast, { POSITION } from "vue-toastification";
-import VueApexCharts from 'vue3-apexcharts';
-import urql from '@urql/vue';
-import { defaultExchanges, subscriptionExchange } from '@urql/vue';
-import { createClient as createWSClient } from 'graphql-ws';
+import VueApexCharts from "vue3-apexcharts";
+import urql, { cacheExchange, fetchExchange } from "@urql/vue";
+import { createClient as createWSClient } from "graphql-ws";
 
 import App from "./App.vue";
 import { routes } from "@/router/index";
@@ -37,28 +36,32 @@ const wsClient = createWSClient({
 
 app.use(router);
 app.use(createPinia());
+app.use(createVfm());
 app.use(Toast, {
   // Setting the global default position
   position: POSITION.BOTTOM_RIGHT,
 });
-app.use(vfmPlugin);
 app.use(VueApexCharts);
+// app.use(urql, {
+//   url: "/graphql",
+//   fetchOptions: () => {
+//     const token = sessionStorage.getItem("token");
+//     return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+//   },
+//   exchanges: [
+//     subscriptionExchange({
+//       forwardSubscription: (operation) => ({
+//         subscribe: (sink) => ({
+//           unsubscribe: wsClient.subscribe(operation as any, sink),
+//         }),
+//       }),
+//     }),
+//   ],
+// });
+
 app.use(urql, {
-  url: '/graphql',
-  fetchOptions: () => {
-    const token = sessionStorage.getItem("token");
-    return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-  },
-  exchanges: [
-    ...defaultExchanges,
-    subscriptionExchange({
-      forwardSubscription: (operation) => ({
-        subscribe: (sink) => ({
-          unsubscribe: wsClient.subscribe(operation, sink),
-        }),
-      }),
-    }),
-  ],
+  url: "/graphql",
+  exchanges: [cacheExchange, fetchExchange],
 });
 
 app.mount("#app");
