@@ -1,14 +1,14 @@
 /// <reference types="vite/client" />
 
-declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
+declare module "*.vue" {
+  import type { DefineComponent } from "vue";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
-  const component: DefineComponent<{}, {}, any>
-  export default component
+  const component: DefineComponent<{}, {}, any>;
+  export default component;
 }
 
-declare module 'vue3-grid-layout' {
-  import Vue from 'vue';
+declare module "vue3-grid-layout" {
+  import Vue from "vue";
 
   export class GridLayout extends Vue {}
 
@@ -26,4 +26,10 @@ declare module 'vue3-grid-layout' {
     static: boolean;
     i: string;
   }
+}
+
+declare module "vue-final-modal" {
+  import { DefineComponent } from "vue";
+  const VueFinalModal: DefineComponent;
+  export default VueFinalModal;
 }
