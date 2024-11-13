@@ -1,19 +1,17 @@
 <template>
   <router-view></router-view>
-  <ModalsContainer />
 </template>
 
 <script setup lang="ts">
-import { ModalsContainer } from "vue-final-modal";
-
-import "windi.css";
-// import "ag-grid-community/dist/styles/ag-grid.css";
-// import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+// import "windi.css";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css"; // 테마에 맞게 수정
 import "vue-toastification/dist/index.css";
-import "vue-final-modal/style.css";
+// import "vue-final-modal/style.css";
 
-// import 'virtual:windi.css'
-// import 'virtual:windi-devtools'
+import "virtual:windi.css";
+// import "virtual:windi-devtools";
+
 import "./index.css";
 import "@/assets/css/aggrid.css";
 </script>

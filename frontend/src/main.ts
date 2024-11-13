@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { createPinia } from "pinia";
-import { createVfm } from "vue-final-modal";
+import { vfmPlugin } from "vue-final-modal";
 import Toast, { POSITION } from "vue-toastification";
 import VueApexCharts from "vue3-apexcharts";
 import urql, { cacheExchange, fetchExchange } from "@urql/vue";
@@ -36,7 +36,7 @@ const wsClient = createWSClient({
 
 app.use(router);
 app.use(createPinia());
-app.use(createVfm());
+app.use(vfmPlugin);
 app.use(Toast, {
   // Setting the global default position
   position: POSITION.BOTTOM_RIGHT,

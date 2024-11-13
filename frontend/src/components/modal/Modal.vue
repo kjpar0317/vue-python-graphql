@@ -1,10 +1,9 @@
 <template>
   <vue-final-modal
+    v-bind:isModal="open"
     :click-to-close="false"
     classes="flex justify-center items-center"
     content-class="relative flex flex-col max-h-full p-4 mx-4 bg-primary-content border rounded border-neutral"
-    @before-open="$emit('open')"
-    @before-close="$emit('close')"
   >
     <span v-if="title" class="mr-8 text-xl font-bold">{{ title }}</span>
     <div class="flex-grow overflow-y-auto">

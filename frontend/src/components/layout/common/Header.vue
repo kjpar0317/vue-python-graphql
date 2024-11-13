@@ -67,9 +67,11 @@
                 type="text"
                 name="email"
                 id="topbar-search"
-                :class="store.sidebar
+                :class="
+                  store.sidebar
                     ? 'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-gray-900 focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm'
-                    : 'hidden'"
+                    : 'hidden'
+                "
                 placeholder="Search"
               />
             </div>
@@ -96,6 +98,7 @@
             </svg>
           </button>
           <div class="items-center hidden lg:flex">
+            <!-- theme start -->
             <div title="Change Theme" class="dropdown dropdown-end">
               <div tabindex="0" class="gap-1 normal-case btn btn-ghost">
                 <svg
@@ -127,7 +130,7 @@
                 </svg>
               </div>
               <div
-                class="dropdown-content rounded-t-box rounded-b-box top-px mt-16 h-[70vh] max-h-96 w-52 overflow-y-auto shadow-2xl"
+                class="dropdown-content rounded-t-box rounded-b-box top-px mt-16 h-[70vh] max-h-96 w-52 overflow-y-auto shadow-2xl bg-primary"
               >
                 <div
                   v-if="themes.length"
@@ -149,6 +152,19 @@
                           <div
                             class="flex col-span-5 row-span-3 row-start-1 gap-1 px-4 py-3"
                           >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              class="w-3 h-3 invisible"
+                              :class="[theme != store.theme ? 'invisible' : '']"
+                            >
+                              <path
+                                d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
+                              ></path>
+                            </svg>
                             <div class="flex-grow text-sm font-bold">
                               {{ theme }}
                             </div>
@@ -166,6 +182,7 @@
                 </div>
               </div>
             </div>
+            <!-- theme end -->
             <div class="-mb-1 btn btn-ghost">
               <div
                 className="tooltip tooltip-bottom"
@@ -233,10 +250,15 @@ const themes = [
   "coffee",
   "winter",
 ];
+let bToggle: boolean = false;
 
 function handleClick() {
   store.setSidebar(!store.sidebar);
 }
+function toggleTheme() {
+  bToggle = !bToggle;
+}
+
 function handleThemeClick(theme: string) {
   store.setTheme(theme);
 }

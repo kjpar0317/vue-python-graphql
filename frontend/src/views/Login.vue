@@ -1,6 +1,7 @@
 <template>
   <section class="flex items-stretch min-h-screen text-white">
-    <div data-theme="dark"
+    <div
+      data-theme="dark"
       class="relative items-center hidden w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex"
       style="
         background-image: url('https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80');
@@ -69,7 +70,7 @@
           background-image: url('https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80');
         "
       >
-        <div class="absolute inset-0 z-0 bg-base-100 opacity-60 "></div>
+        <div class="absolute inset-0 z-0 bg-base-100 opacity-60"></div>
       </div>
       <div class="z-20 w-full py-6 text-base-100">
         <h1 class="my-6">
@@ -193,18 +194,18 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
 import { Field, Form } from "vee-validate";
-import { gql, useMutation } from '@urql/vue';
-import { useToast } from 'vue-toastification';
+import { gql, useMutation } from "@urql/vue";
+import { useToast } from "vue-toastification";
 
 const loginGql = gql`
   mutation ($id: String!, $password: String!) {
-    login (id: $id, password: $password) {
+    login(id: $id, password: $password) {
       userId
       token
     }
   }
-`
-const router = useRouter();   
+`;
+const router = useRouter();
 const toast = useToast();
 const mutation = useMutation(loginGql);
 
@@ -212,15 +213,17 @@ function isRequired(value: boolean) {
   return value ? true : "This field is required";
 }
 async function handleSubmit(values: any) {
-  mutation.executeMutation({ id: values.id, password: values.password }).then((res) => {
-    if (res.error) {
-      toast.error(res.error.message);
-    } else {
-      sessionStorage.setItem("token", res.data.login.token);
-      sessionStorage.setItem("userId", res.data.login.userId);
+  mutation
+    .executeMutation({ id: values.id, password: values.password })
+    .then((res) => {
+      if (res.error) {
+        toast.error(res.error.message);
+      } else {
+        sessionStorage.setItem("token", res.data.login.token);
+        sessionStorage.setItem("userId", res.data.login.userId);
 
-      router.push("/");
-    }
-  })
+        router.push("/");
+      }
+    });
 }
 </script>
