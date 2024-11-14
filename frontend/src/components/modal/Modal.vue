@@ -4,7 +4,7 @@
     @update:model-value="$emit('update:open', $event)"
     :click-to-close="false"
     classes="flex justify-center items-center"
-    content-class="relative flex flex-col max-h-full p-4 mx-4 bg-primary-content border rounded border-neutral"
+    content-class="relative flex flex-col max-h-full p-4 mx-4 bg-base-200 border rounded border-neutral"
   >
     <span v-if="title" class="mr-8 text-xl font-bold">{{ title }}</span>
     <div class="flex-grow overflow-y-auto">

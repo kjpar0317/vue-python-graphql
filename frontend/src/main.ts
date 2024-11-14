@@ -4,7 +4,11 @@ import { createPinia } from "pinia";
 import { vfmPlugin } from "vue-final-modal";
 import Toast, { POSITION } from "vue-toastification";
 import VueApexCharts from "vue3-apexcharts";
-import urql, { cacheExchange, fetchExchange } from "@urql/vue";
+import urql, {
+  cacheExchange,
+  fetchExchange,
+  subscriptionExchange,
+} from "@urql/vue";
 import { createClient as createWSClient } from "graphql-ws";
 
 import App from "./App.vue";
@@ -42,22 +46,24 @@ app.use(Toast, {
   position: POSITION.BOTTOM_RIGHT,
 });
 app.use(VueApexCharts);
-// app.use(urql, {
-//   url: "/graphql",
-//   fetchOptions: () => {
-//     const token = sessionStorage.getItem("token");
-//     return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-//   },
-//   exchanges: [
-//     subscriptionExchange({
-//       forwardSubscription: (operation) => ({
-//         subscribe: (sink) => ({
-//           unsubscribe: wsClient.subscribe(operation as any, sink),
-//         }),
-//       }),
-//     }),
-//   ],
-// });
+app.use(urql, {
+  url: "/graphql",
+  fetchOptions: () => {
+    const token = sessionStorage.getItem("token");
+    return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+  },
+  exchanges: [
+    cacheExchange,
+    fetchExchange,
+    subscriptionExchange({
+      forwardSubscription: (operation) => ({
+        subscribe: (sink) => ({
+          unsubscribe: wsClient.subscribe(operation as any, sink),
+        }),
+      }),
+    }),
+  ],
+});
 
 app.use(urql, {
   url: "/graphql",

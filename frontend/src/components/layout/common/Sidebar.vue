@@ -1,12 +1,10 @@
 <template>
-  <div class="h-0 drawer">
-    <aside
-      id="sidebar"
-      aria-label="Sidebar"
-      :class="store.sidebar
-          ? 'apply_sidebar_aside transition-width drawer-side hidden'
-          : 'apply_sidebar_aside transition-width drawer-side flex'"
-    >
+  <div
+    class="drawer lg:drawer-open"
+    :class="store.sidebar ? '' : 'drawer-side'"
+  >
+    <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+    <div class="apply_sidebar_aside transition-width">
       <div
         class="relative flex flex-col flex-1 min-h-0 pt-0 border-r border-base-300 bg-base-200 text-base-content"
       >
@@ -47,7 +45,11 @@
                 <router-link
                   :to="menu.path"
                   @click.native="handleSidebar"
-                  :class="route.path == menu.path ? 'flex items-center p-2 text-base font-normal rounded-lg group active' : 'flex items-center p-2 text-base font-normal rounded-lg group' "
+                  :class="
+                    route.path == menu.path
+                      ? 'flex items-center p-2 text-base font-normal rounded-lg group active'
+                      : 'flex items-center p-2 text-base font-normal rounded-lg group'
+                  "
                 >
                   <svg
                     class="w-6 h-6 transition duration-75"
@@ -74,7 +76,7 @@
           </div>
         </div>
       </div>
-    </aside>
+    </div>
     <div
       class="fixed inset-0 z-10 hidden bg-gray-900 opacity-50"
       id="sidebarBackdrop"
@@ -83,7 +85,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 
 import { layoutStore } from "@/store/layout";
 

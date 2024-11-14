@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 pt-1 min-w-96 w-full h-full">
-      <ag-grid-vue
+    <ag-grid-vue
       class="w-full h-full ag-theme-alpine"
       :columnDefs="columnDefs"
       :rowData="data.codes"
@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 import { reactive, onMounted } from "vue";
-import { gql, useQuery } from '@urql/vue';
+import { gql, useQuery } from "@urql/vue";
 import { AgGridVue } from "ag-grid-vue3";
 import { GridReadyEvent } from "ag-grid-community";
 
@@ -30,7 +30,7 @@ const { data, error } = await useQuery({
         CParentId
       }
     }
-  `
+  `,
 });
 const columnDefs = [
   { headerName: "코드", field: "CId" },
@@ -52,5 +52,5 @@ function onSizeColumnToFit() {
   if (gridObj && gridObj.gridApi) {
     gridObj.gridApi.sizeColumnsToFit();
   }
-}   
+}
 </script>

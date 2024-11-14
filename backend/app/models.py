@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, UTC
 from typing import Optional
 from sqlmodel import Field
 
@@ -33,4 +33,4 @@ class CodeProblem(SQLModel, table=True):
     CP_CONTENT: Optional[str]
     CP_TAG: str
     CP_LAPTIME: datetime = Field(
-        default_factory=datetime.utcnow(), nullable=False)
+        default_factory=datetime.now(UTC), nullable=False)

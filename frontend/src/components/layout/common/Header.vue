@@ -130,7 +130,7 @@
                 </svg>
               </div>
               <div
-                class="dropdown-content rounded-t-box rounded-b-box top-px mt-16 h-[70vh] max-h-96 w-52 overflow-y-auto shadow-2xl bg-primary"
+                class="dropdown-content rounded-t-box rounded-b-box top-px mt-16 h-[70vh] max-h-96 w-52 overflow-y-auto shadow-2xl bg-base-content"
               >
                 <div
                   v-if="themes.length"
@@ -158,7 +158,7 @@
                               height="16"
                               viewBox="0 0 24 24"
                               fill="currentColor"
-                              class="w-3 h-3 invisible"
+                              class="w-3 h-3"
                               :class="[theme != store.theme ? 'invisible' : '']"
                             >
                               <path
